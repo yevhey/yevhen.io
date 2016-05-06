@@ -1,0 +1,33 @@
+html, body, #wrapper {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+
+#menu input {
+	margin: 10px;
+}
+
+#menu input[type="text"] {
+	width: 50%;
+	float: left;
+}
+
+#menu input[type="button"] {
+	width: 30%;
+	float: left;
+}
+
+@media only screen and (min-width: 361px) {
+	#menu {
+		float: left;
+		height: 100%;
+		width: 20%;
+	}
+
+	#map {
+			position: relative;
+			overflow: hidden;
+			height: 100%;
+	}
+}
