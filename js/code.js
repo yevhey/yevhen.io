@@ -4,8 +4,8 @@ function initMap() {
   var travel_mode = google.maps.TravelMode.WALKING;
   var map = new google.maps.Map(document.getElementById('map'), {
     mapTypeControl: false,
-    center: {lat: -33.8688, lng: 151.2195},
-    zoom: 13
+    center: {lat: 50.4483293, lng: 30.5416351},
+    zoom: 12
   });
   var directionsService = new google.maps.DirectionsService;
   var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -13,7 +13,6 @@ function initMap() {
 
   var origin_input = document.getElementById('origin-input');
   var destination_input = document.getElementById('destination-input');
-  var modes = document.getElementById('mode-selector');
 
   var origin_autocomplete = new google.maps.places.Autocomplete(origin_input);
   origin_autocomplete.bindTo('bounds', map);
