@@ -58,10 +58,7 @@ function initMap() {
     route(origin_place_id, destination_place_id, travel_mode,
           directionsService, directionsDisplay);
 
-    var myTime = directionsService.getDuration().seconds + " seconds";
-    console.log(myTime);
   });
-
   function route(origin_place_id, destination_place_id, travel_mode,
                  directionsService, directionsDisplay) {
     if (!origin_place_id || !destination_place_id) {
@@ -74,9 +71,23 @@ function initMap() {
     }, function(response, status) {
       if (status === google.maps.DirectionsStatus.OK) {
         directionsDisplay.setDirections(response);
+        computeTotalDistance(directionsDisplay.directions);
       } else {
         window.alert('Directions request failed due to ' + status);
       }
     });
+  }
+
+  function computeTotalDistance(result) {
+    var time = 0;
+    var myroute = result.routes[0];
+    for (var i = 0; i < myroute.legs.length; i++) {
+      time += myroute.legs[i].duration.text;
+    }
+    time = time.replace('год','годин');
+    time = time.replace('хв','хвилин');
+    while(time.charAt(0) === '0')
+      time = time.substr(1);
+    document.getElementById('vtime').innerHTML = "Час Вашого руху " + time;
   }
 }

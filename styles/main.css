@@ -8,6 +8,13 @@ html, body {
 	width: 80%;
 	float: right;
 }
+
+#inputs {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
 .controls {
 	margin-top: 10px;
 	border: 1px solid transparent;
@@ -26,27 +33,19 @@ html, body {
 	font-family: Roboto;
 	font-size: 15px;
 	font-weight: 300;
-	margin-left: 12px;
 	padding: 0 11px 0 13px;
 	text-overflow: ellipsis;
 	width: 200px;
+}
+
+#vtime {
+	font-family: Roboto;
+	font-size: 15px;
+	font-weight: 500;
 }
 
 #origin-input:focus,
 #destination-input:focus,
 #ar-time:focus {
 	border-color: #4d90fe;
-}
-
-#mode-selector {
-	color: #fff;
-	background-color: #4d90fe;
-	margin-left: 12px;
-	padding: 5px 11px 0px 11px;
-}
-
-#mode-selector label {
-	font-family: Roboto;
-	font-size: 13px;
-	font-weight: 300;
 }
