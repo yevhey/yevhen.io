@@ -57,6 +57,9 @@ function initMap() {
     destination_place_id = place.place_id;
     route(origin_place_id, destination_place_id, travel_mode,
           directionsService, directionsDisplay);
+
+    var myTime = directionsService.getDuration().seconds + " seconds";
+    console.log(myTime);
   });
 
   function route(origin_place_id, destination_place_id, travel_mode,
