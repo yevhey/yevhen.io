@@ -38,7 +38,7 @@ html, body {
 	width: 200px;
 }
 
-#vtime {
+.time {
 	font-family: Roboto;
 	font-size: 15px;
 	font-weight: 500;

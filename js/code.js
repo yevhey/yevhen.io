@@ -88,6 +88,18 @@ function initMap() {
     time = time.replace('хв','хвилин');
     while(time.charAt(0) === '0')
       time = time.substr(1);
-    document.getElementById('vtime').innerHTML = "Час Вашого руху " + time;
+    document.getElementById('timetogo').innerHTML = "Час Вашого руху " + time;
+      time = time.replace('хвилин','');
+    console.log("I send you an e-mail");
+    var currentdate = new Date();
+    var time2 = +currentdate.getMinutes() + +time;
+    if (time2 > 59) {
+        var hours = +currentdate.getHours() + 1;
+        time2 -= 60;
+        var datetime = "Ви прибудете о " + hours + ":" + time2;
+    } else {
+      var datetime = "Ви прибудете о " + currentdate.getHours() + ":" + time2;
+    }
+    document.getElementById('timetobe').innerHTML = datetime;
   }
 }
