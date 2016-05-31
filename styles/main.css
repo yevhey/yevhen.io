@@ -28,7 +28,8 @@ html, body {
 
 #origin-input,
 #destination-input,
-#ar-time {
+#ar-time,
+input[type=tel] {
 	background-color: #fff;
 	font-family: Roboto;
 	font-size: 15px;
