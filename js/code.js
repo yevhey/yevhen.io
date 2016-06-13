@@ -4,7 +4,10 @@ function initMap() {
   var travel_mode = google.maps.TravelMode.WALKING;
   var map = new google.maps.Map(document.getElementById('map'), {
     mapTypeControl: false,
-    center: {lat: 50.4483293, lng: 30.5416351},
+    center: {
+      lat: 50.4483293, 
+      lng: 30.5416351
+    },
     zoom: 12
   });
   var directionsService = new google.maps.DirectionsService;
@@ -96,6 +99,10 @@ function initMap() {
     if (time2 > 59) {
         var hours = +currentdate.getHours() + 1;
         time2 -= 60;
+        if (time2 < 10)
+        {
+          time2 = "0" + time2;
+        }
         var datetime = "Ви прибудете о " + hours + ":" + time2;
     } else {
       var datetime = "Ви прибудете о " + currentdate.getHours() + ":" + time2;
