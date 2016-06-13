@@ -100,9 +100,7 @@ function initMap() {
         var hours = +currentdate.getHours() + 1;
         time2 -= 60;
         if (time2 < 10)
-        {
           time2 = "0" + time2;
-        }
         var datetime = "Ви прибудете о " + hours + ":" + time2;
     } else {
       var datetime = "Ви прибудете о " + currentdate.getHours() + ":" + time2;
