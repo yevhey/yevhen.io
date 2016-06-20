@@ -39,6 +39,10 @@ input[type=tel] {
 	width: 200px;
 }
 
+#destination-input {
+	margin-bottom: 10px;
+}
+
 .time {
 	font-family: Roboto;
 	font-size: 15px;
