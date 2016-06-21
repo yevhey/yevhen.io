@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Urban app</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="styles/main.css"
-  </head>
-  <body>
-    <div id="map"></div>
-    <div id="inputs">
+<head>
+	<title>Urban app</title>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+	<meta charset="utf-8">
+	<link href="styles.css" rel="stylesheet">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNRzOGCsGk5u0VHjDOh_4QyJf4K-Hz5Bw&libraries=places"></script>
+	<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+	<script src="jquery.maskedinput.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+	<script src="script.js"></script>
+	<script src="script2.js"></script>
+</head>
+<body>
+	<div id="map"></div>
+	<div id="inputs">
         <input id="origin-input" class="controls" type="text"
             placeholder="Пункт початку" >
 
@@ -16,12 +23,18 @@
             placeholder="Пункт кінця">
         <hr width="80%">
         <input id="ar-time" type="time" class="controls"  />
-        <input type="tel" class="controls">
-        <p class="time" id="timetogo"></p>
+        <input type="tel" class="controls" placeholder="38 (093) 776 86 04">
+        <button type="button" class="btn btn-primary hidden" data-toggle="modal" data-target=".bs-example-modal-sm">Нагадати</button>
+
+		<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+		  <div class="modal-dialog modal-sm">
+		    <div class="modal-content">
+		      Ви отримаєте смс на Ваш номер мобільного телефону за 15 хвилин до виходу!
+		    </div>
+		  </div>
+		</div>
+        <p class="time time-1" id="timetogo"></p>
         <p class="time" id="timetobe"></p>
     </div>
-    <script src="js/code.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNRzOGCsGk5u0VHjDOh_4QyJf4K-Hz5Bw&signed_in=true&libraries=places&callback=initMap"
-    async defer></script>
-  </body>
+</body>
 </html>

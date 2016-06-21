@@ -54,3 +54,18 @@ input[type=tel] {
 #ar-time:focus {
 	border-color: #4d90fe;
 }
+
+button {
+	font-family: Roboto;
+	cursor: pointer;
+	width: 200px;
+	margin-top: 10px !important;
+}
+
+.time-1 {
+	margin-top: 10px;
+}
+
+.modal-content {
+	padding: 20px;
+}
