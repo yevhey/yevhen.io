@@ -119,7 +119,7 @@ function initialize() {
 		function autoRefresh(map, pathCoords) {
 			var i, k, marker;
 			
-			marker = new google.maps.Marker({map:map, icon:"http://cs415517.vk.me/u171360026/docs/fabfb6b650cc/bus.png?extra=kJaI2KT47aNOmXwpxWZiOtH1EecNNl2jX80793UeBIwEocIKD8vVgogA7TeZZR3Ig-wKosB6GxhSaYQfANft8eMSKLw7j2RuVzGBp-jlEFiCbhf4_msqKwrH"});
+			marker = new google.maps.Marker({map:map, icon:"http://maps.google.com/mapfiles/ms/micons/bus.png"});
 			for (i = 0; i < pathCoords.length; i++) {				
 				setTimeout(function(coords) {
 					moveMarker(map, marker, coords);
