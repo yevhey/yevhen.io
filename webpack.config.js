@@ -2,11 +2,11 @@ const path = require('path');
 
 module.exports = {
     entry: {
-      main: './src/App.js'
+      main: ['./src/App.js', './src/Home.js', './src/NotFound.js']
     },
     output: {
-      filename: 'index.js',
-      path: path.resolve(__dirname, 'dist')
+      filename: 'bundle.js',
+      path: path.resolve(__dirname, './')
     },
     module: {
       rules: [
@@ -24,6 +24,5 @@ module.exports = {
       port: 9000,
       publicPath: "http://localhost:9000/",
       historyApiFallback: true
-    },
-    devtool: 'source-map'
+    }
 };
