@@ -1,0 +1,24 @@
+{
+  "name": "webpack-project",
+  "version": "1.0.0",
+  "description": "everything is serious",
+  "private": true,
+  "scripts": {
+    "buildProd": "webpack --mode production",
+    "start": "webpack-dev-server"
+  },
+  "author": "Yevhenii Zhdan",
+  "license": "ISC",
+  "dependencies": {
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "react-loadable": "^5.5.0",
+    "react-router-dom": "^4.3.1"
+  }
+}
