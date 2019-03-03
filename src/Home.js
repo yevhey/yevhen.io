@@ -38,7 +38,7 @@ function useFetchAndSearch(searchValue) {
   const searchData = useRef([]);
 
   useEffect(function fetchData() {
-    fetch('https://pokeapi.co/api/v2/pokemon', {
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=1000', {
       cache: 'no-cache',
     })
     .then(results => results.json())
