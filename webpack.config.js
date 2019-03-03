@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     entry: {
-      main: ['./src/App.js', './src/Home.js', './src/NotFound.js']
+      main: './src/App.js'
     },
     output: {
       filename: 'bundle.js',
@@ -22,7 +22,7 @@ module.exports = {
     resolve: { extensions: ['.js'] },
     devServer: {
       port: 9000,
-      publicPath: "http://localhost:9000/",
+      publicPath: 'http://localhost:9000/',
       historyApiFallback: true
     }
 };
