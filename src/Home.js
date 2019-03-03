@@ -36,7 +36,7 @@ function useSearchInput(initialValue) {
 
 function useFetchAndSearch(searchValue) {
   const [values, setValues] = useState([]);
-  const [searchData, setSearchData] = useState([]);
+  const searchData = useRef([]);
 
   useEffect(function fetchData() {
     fetch('https://pokeapi.co/api/v2/nature', {
@@ -45,12 +45,12 @@ function useFetchAndSearch(searchValue) {
     .then(results => results.json())
     .then(({ results }) => {
       setValues(results);
-      setSearchData(results);
+      searchData.current = results;
     });
   }, []);
 
   useEffect(function searchPokemon() {
-    setValues(searchData.filter(({ name }) => name.includes(searchValue)));
+    setValues(searchData.current.filter(({ name }) => name.includes(searchValue)));
   }, [searchValue]);
 
   return values;
