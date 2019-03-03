@@ -6,10 +6,9 @@ export default function Home() {
 
   return (
     <>
-      Focused input: <input {...searchInput} />
+      Search the pokemon: <input {...searchInput} />
       <br />
       <br />
-      Fetched data:
       {values.map(({ name }) => <div key={name}>{name}</div>)}
     </>
   );
@@ -39,7 +38,7 @@ function useFetchAndSearch(searchValue) {
   const searchData = useRef([]);
 
   useEffect(function fetchData() {
-    fetch('https://pokeapi.co/api/v2/nature', {
+    fetch('https://pokeapi.co/api/v2/pokemon', {
       cache: 'no-cache',
     })
     .then(results => results.json())
