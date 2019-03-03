@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   const searchInput = useSearchInput('');
@@ -9,7 +10,13 @@ export default function Home() {
       Search the pokemon: <input {...searchInput} />
       <br />
       <br />
-      {values.map(({ name }) => <div key={name}>{name}</div>)}
+      {values.map(({ name }) =>(
+        <div key={name}>
+          <Link to={name}>
+            {name}
+          </Link>
+        </div>
+      ))}
     </>
   );
 };
@@ -41,11 +48,11 @@ function useFetchAndSearch(searchValue) {
     fetch('https://pokeapi.co/api/v2/pokemon?limit=1000', {
       cache: 'no-cache',
     })
-    .then(results => results.json())
-    .then(({ results }) => {
-      setValues(results);
-      searchData.current = results;
-    });
+      .then(results => results.json())
+      .then(({ results }) => {
+        setValues(results);
+        searchData.current = results;
+      });
   }, []);
 
   useEffect(function searchPokemon() {

@@ -7,19 +7,19 @@ const Loading = () => <div>Loading...</div>;
 
 const Home = Loadable({
   loader: () => import('./Home'),
-  loading: Loading
+  loading: Loading,
 });
 
-const NoMatch = Loadable({
-  loader: () => import('./NotFound'),
-  loading: Loading
+const Pokemon = Loadable({
+  loader: () => import('./PokemonProfile'),
+  loading: Loading,
 });
 
 const App = () => (
   <Router>
     <Switch>
-      <Route path="/" component={Home} />
-      <Route component={NoMatch} />
+      <Route path="/:name" component={Pokemon} />
+      <Route component={Home} />
     </Switch>
   </Router>
 );

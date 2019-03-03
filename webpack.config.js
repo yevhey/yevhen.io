@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     entry: {
-      main: ['./src/App.js', './src/Home.js', './src/NotFound.js']
+      main: ['./src/App.js', './src/Home.js', './src/PokemonProfile.js']
     },
     output: {
       filename: 'bundle.js',
