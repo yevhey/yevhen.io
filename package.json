@@ -4,8 +4,8 @@
   "description": "everything is serious",
   "private": true,
   "scripts": {
-    "buildProd": "webpack --mode production",
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "build": "webpack -p"
   },
   "author": "Yevhenii Zhdan",
   "license": "ISC",
