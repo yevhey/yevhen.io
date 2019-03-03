@@ -3,14 +3,28 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
   const searchInput = useSearchInput('');
-  const values = useFetchAndSearch(searchInput.value);
+  const [values, setValues] = useState([]);
+  const [isLoading, setLoading] = useState(true);
+  const dataRef = useRef([]);
+
+  useEffect(function firstRender() {
+    fetchData().then(data =>{
+      setValues(data);
+      setLoading(false);
+      dataRef.current = data;
+    });
+  }, []);
+
+  useEffect(function searchPokemon() {
+    setValues(dataRef.current.filter(({ name }) => name.includes(searchInput.value.toLowerCase())));
+  }, [searchInput.value]);
 
   return (
     <>
       Search the pokemon: <input {...searchInput} />
       <br />
       <br />
-      {values.map(({ name }) =>(
+      {!isLoading && values.map(({ name }) =>(
         <div key={name}>
           <Link to={name}>
             {name}
@@ -40,24 +54,10 @@ function useSearchInput(initialValue) {
   };
 }
 
-function useFetchAndSearch(searchValue) {
-  const [values, setValues] = useState([]);
-  const searchData = useRef([]);
-
-  useEffect(function fetchData() {
-    fetch('https://pokeapi.co/api/v2/pokemon?limit=1000', {
-      cache: 'no-cache',
-    })
-      .then(results => results.json())
-      .then(({ results }) => {
-        setValues(results);
-        searchData.current = results;
-      });
-  }, []);
-
-  useEffect(function searchPokemon() {
-    setValues(searchData.current.filter(({ name }) => name.includes(searchValue)));
-  }, [searchValue]);
-
-  return values;
+function fetchData() {
+  return fetch('https://pokeapi.co/api/v2/pokemon?limit=1000', {
+    cache: 'no-cache',
+  })
+    .then(results => results.json())
+    .then(({ results }) => results);
 }
