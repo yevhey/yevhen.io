@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import ApplePayButton from './ApplePayButton';
 
 export default function Home() {
   const searchInput = useSearchInput('');
@@ -21,6 +22,9 @@ export default function Home() {
 
   return (
     <>
+      <ApplePayButton />
+      <br />
+      <br />
       Search the pokemon: <input {...searchInput} />
       <br />
       <br />
