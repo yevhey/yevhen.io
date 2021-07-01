@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
+import * as Sentry from '@sentry/react';
 
 function PokemonProfile({ match: { params: { name } } }) {
   const [pokemon, setPokemon] = useState([]);
@@ -8,7 +9,7 @@ function PokemonProfile({ match: { params: { name } } }) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
       .then(results => results.json())
       .then(({ sprites }) => {
-        setPokemon(Object.values(sprites).filter(image => !!image).reverse());
+        setPokemon(Object.values(sprites).filter(image => typeof image === 'string').reverse());
       });
  }, []);
 

@@ -10,6 +10,8 @@
   "author": "Yevhenii Zhdan",
   "license": "ISC",
   "dependencies": {
+    "@sentry/react": "^6.8.0",
+    "@sentry/tracing": "^6.8.0",
     "react": "^16.11.0",
     "react-dom": "^16.11.0"
   },
