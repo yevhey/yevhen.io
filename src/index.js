@@ -6,6 +6,7 @@ import { Integrations } from '@sentry/tracing';
 
 import Home from './Home';
 import PokemonProfile from './PokemonProfile';
+import { Demo } from './Demo';
 
 Sentry.init({
     dsn: 'https://27452c0494544b6ea76bf2263d9a98c2@o901511.ingest.sentry.io/5842217',
@@ -19,7 +20,8 @@ const App = () => (
   <Router>
     <Switch>
       <Route path="/:name" component={PokemonProfile} />
-      <Route component={Home} />
+      <Route path="/home" component={Home} />
+      <Route component={Demo} />
     </Switch>
   </Router>
 );

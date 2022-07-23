@@ -11,6 +11,11 @@ module.exports = {
     module: {
       rules: [
         {
+            test: /\.tsx?$/,
+            use: 'ts-loader',
+            exclude: /node_modules/,
+        },
+        {
           test: /\.css$/i,
           use: [
             'style-loader',
@@ -26,7 +31,7 @@ module.exports = {
         }
       ]
     },
-    resolve: { extensions: ['.css', '.js'] },
+    resolve: { extensions: ['.tsx', '.ts', '.css', '.js'] },
     devServer: {
       port: 9000,
       publicPath: 'http://localhost:9000/',
