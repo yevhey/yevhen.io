@@ -6,9 +6,9 @@ import { F } from '@grammarly/focal';
 
 const counterUI = UI.Node.make<number, 'plus' | 'minus'>(({ state, notify }) => (
     <F.div>
-        <F.button onClick={() => notify('plus')}>+</F.button>
+        <F.button onClick={notify('plus')}>+</F.button>
         {state}
-        <F.button onClick={() => notify('minus')}>-</F.button>
+        <F.button onClick={notify('minus')}>-</F.button>
     </F.div>
 ));
 
@@ -20,9 +20,5 @@ const counterFlow: Flow.For<typeof counterUI> = (actions: Observable<'plus' | 'm
 };
 
 export const Demo = () => {
-    return (
-        <div>
-            Emoji menu
-        </div>
-    );
+    return UI.mount(counterUI, counterFlow);
 };
