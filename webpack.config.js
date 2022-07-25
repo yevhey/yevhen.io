@@ -12,6 +12,10 @@ module.exports = {
     module: {
       rules: [
         {
+            test: /\.svg$/,
+            loader: 'svg-inline-loader',
+        },
+        {
             test: /\.tsx?$/,
             use: 'ts-loader',
             exclude: /node_modules/,
@@ -32,7 +36,7 @@ module.exports = {
         }
       ]
     },
-    resolve: { extensions: ['.tsx', '.ts', '.css', '.js'] },
+    resolve: { extensions: ['.tsx', '.ts', '.css', '.js', '.svg'] },
     devServer: {
       port: 9000,
       publicPath: 'http://localhost:9000/',

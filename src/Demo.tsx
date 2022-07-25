@@ -4,12 +4,17 @@ import { Observable } from 'rxjs';
 import { Flow, UI } from '@grammarly/embrace';
 import { F } from '@grammarly/focal';
 
+import AttachIcon from './images/Attach.svg';
+// import EmojiIcon from './images/EmojiSmile.svg';
+// import SendIcon from './images/Send.svg';
 const counterUI = UI.Node.make<number, 'plus' | 'minus'>(({ state, notify }) => (
-    <F.div>
-        <F.button onClick={notify('plus')}>+</F.button>
-        {state}
-        <F.button onClick={notify('minus')}>-</F.button>
-    </F.div>
+    <>
+        <F.div>
+            <F.button onClick={notify('plus')}>+</F.button>
+            {state}
+            <F.button onClick={notify('minus')}>-</F.button>
+        </F.div>
+    </>
 ));
 
 const counterFlow: Flow.For<typeof counterUI> = (actions: Observable<'plus' | 'minus'>) => {
@@ -20,5 +25,7 @@ const counterFlow: Flow.For<typeof counterUI> = (actions: Observable<'plus' | 'm
 };
 
 export const Demo = () => {
-    return UI.mount(counterUI, counterFlow);
+    return (
+        <AttachIcon />
+    );
 };
