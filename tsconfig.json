@@ -1,5 +1,5 @@
 {
-  "include": ["custom.d.ts"],
+  "include": ["svg.d.ts"],
   "compilerOptions": {
     "outDir": "./dist/",
     "noImplicitAny": true,

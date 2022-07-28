@@ -13,7 +13,7 @@ module.exports = {
       rules: [
         {
             test: /\.svg$/,
-            loader: 'svg-inline-loader',
+            loader: 'svg-react-loader',
         },
         {
             test: /\.tsx?$/,

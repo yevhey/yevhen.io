@@ -26,6 +26,8 @@ const counterFlow: Flow.For<typeof counterUI> = (actions: Observable<'plus' | 'm
 
 export const Demo = () => {
     return (
-        <AttachIcon />
+        <div>
+            <AttachIcon />
+        </div>
     );
 };
