@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import * as Sentry from '@sentry/react';
 
 function PokemonProfile({ match: { params: { name } } }) {
   const [pokemon, setPokemon] = useState([]);

@@ -7,13 +7,15 @@ module.exports = {
     },
     output: {
       filename: 'bundle.js',
-      path: path.resolve(__dirname, './')
+      path: path.resolve(__dirname, './'),
     },
+    devtool: 'eval-source-map',
     module: {
       rules: [
         {
             test: /\.svg$/,
             loader: 'svg-react-loader',
+            include: path.resolve(__dirname, './src/images/'),
         },
         {
             test: /\.tsx?$/,
