@@ -9,11 +9,9 @@ import AttachIcon from './images/Attach.svg';
 // import SendIcon from './images/Send.svg';
 const counterUI = UI.Node.make<number, 'plus' | 'minus'>(({ state, notify }) => (
     <>
-        <F.div>
-            <F.button onClick={notify('plus')}>+</F.button>
-            {state}
-            <F.button onClick={notify('minus')}>-</F.button>
-        </F.div>
+        <F.button onClick={notify('plus')}>+</F.button>
+        {state}
+        <F.button onClick={notify('minus')}>-</F.button>
     </>
 ));
 
