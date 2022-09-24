@@ -19,8 +19,8 @@ Sentry.init({
 const App = () => (
   <Router>
     <Switch>
-      <Route path="/:name" component={PokemonProfile} />
       <Route path="/demo" component={Demo} />
+      <Route path="/:name" component={PokemonProfile} />
       <Route component={Home} />
     </Switch>
   </Router>
