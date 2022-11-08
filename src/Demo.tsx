@@ -26,9 +26,17 @@ const counterFlow: Flow.For<typeof counterUI> = (actions: Observable<'plus' | 'm
 export const Demo = () => {
     return (
         <>
-            <span className="demo-title">Chat</span>
-            <div className="demo-wrap">
-                <AttachIcon />
+            <span className="title">Chat</span>
+            <div className="demo">
+                <div className="demo-body">
+
+                </div>
+                <div className="demo-footer">
+                    <div className="textarea-wrap">
+                        <textarea placeholder="Type a message..." />
+                    </div>
+                    <AttachIcon />
+                </div>
             </div>
         </>
     );
