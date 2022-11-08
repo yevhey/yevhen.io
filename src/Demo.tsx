@@ -27,7 +27,6 @@ const counterFlow: Flow.For<typeof counterUI> = (actions: Observable<'plus' | 'm
 export const Demo = () => {
     return (
         <>
-            <Link to="/">&lt; Back</Link>
             <span className="title">Chat</span>
             <div className="demo">
                 <div className="demo-body">
