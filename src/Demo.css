@@ -1,5 +1,10 @@
+* {
+  box-sizing: border-box;
+}
+
 html, body {
     height: 100%;
+    margin: 0;
 }
 
 #app {
@@ -21,6 +26,7 @@ html, body {
     flex-direction: column;
     align-self: center;
     border: 4px solid #ddd;
+    /* iPhone 13 Pro viewport width */
     width: 390px;
     height: 600px;
 }
@@ -35,7 +41,7 @@ html, body {
 
 .textarea-wrap textarea {
     display: block;
-    width: 370px;
+    width: 100%;
     padding: 10px 10px 0;
     font-size: 16px;
     resize: none;
