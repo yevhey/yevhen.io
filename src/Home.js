@@ -22,6 +22,9 @@ export default function Home() {
 
   return (
     <>
+       <Link to="/demo">Chat demo</Link>
+       <br />
+       <br />
       Search the pokemon: <input {...searchInput} />
       <br />
       <br />
