@@ -3,6 +3,7 @@ import * as Rx from 'rxjs/operators'
 import { Observable } from 'rxjs';
 import { Flow, UI } from '@grammarly/embrace';
 import { F } from '@grammarly/focal';
+import './Demo.css';
 
 import AttachIcon from './images/Attach.svg';
 // import EmojiIcon from './images/EmojiSmile.svg';
@@ -24,8 +25,11 @@ const counterFlow: Flow.For<typeof counterUI> = (actions: Observable<'plus' | 'm
 
 export const Demo = () => {
     return (
-        <div>
-            <AttachIcon />
-        </div>
+        <>
+            <span className="demo-title">Chat</span>
+            <div className="demo-wrap">
+                <AttachIcon />
+            </div>
+        </>
     );
 };

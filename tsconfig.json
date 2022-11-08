@@ -1,5 +1,5 @@
 {
-  "include": ["svg.d.ts"],
+  "include": ["src", "svg.d.ts"],
   "compilerOptions": {
     "outDir": "./dist/",
     "noImplicitAny": true,
