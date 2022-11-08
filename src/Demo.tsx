@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import * as Rx from 'rxjs/operators'
 import { Observable } from 'rxjs';
 import { Flow, UI } from '@grammarly/embrace';
@@ -26,6 +27,7 @@ const counterFlow: Flow.For<typeof counterUI> = (actions: Observable<'plus' | 'm
 export const Demo = () => {
     return (
         <>
+            <Link to="/">&lt; Back</Link>
             <span className="title">Chat</span>
             <div className="demo">
                 <div className="demo-body">

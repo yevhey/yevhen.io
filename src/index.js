@@ -20,6 +20,7 @@ const App = () => (
   <Router>
     <Switch>
       <Route path="/demo" component={Demo} />
+      <Route path="/p/:name" component={PokemonProfile} />
       <Route component={Home} />
     </Switch>
   </Router>

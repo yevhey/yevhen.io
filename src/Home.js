@@ -22,15 +22,15 @@ export default function Home() {
 
   return (
     <>
-      {/* <ApplePayButton /> */}
-      {/* <br /> */}
-      {/* <br /> */}
+       <Link to="/demo">Chat demo</Link>
+       <br />
+       <br />
       Search the pokemon: <input {...searchInput} />
       <br />
       <br />
       {!isLoading && values.map(({ name }) =>(
         <div key={name}>
-          <Link to={name}>
+          <Link to={`p/${name}`}>
             {name}
           </Link>
         </div>
