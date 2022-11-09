@@ -1,44 +1,28 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as Rx from 'rxjs/operators'
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
 import { Flow, UI } from '@grammarly/embrace';
 import { F } from '@grammarly/focal';
 import './Demo.css';
 
 import AttachIcon from './images/Attach.svg';
+import mount = UI.mount;
 // import EmojiIcon from './images/EmojiSmile.svg';
 // import SendIcon from './images/Send.svg';
-const counterUI = UI.Node.make<number, 'plus' | 'minus'>(({ state, notify }) => (
-    <>
-        <F.button onClick={notify('plus')}>+</F.button>
-        {state}
-        <F.button onClick={notify('minus')}>-</F.button>
-    </>
-));
 
-const counterFlow: Flow.For<typeof counterUI> = (actions: Observable<'plus' | 'minus'>) => {
+const Button = UI.Node.make<number, 'click'>(({ state, notify }) => (
+    <F.div>
+        <F.button onClick={notify('click')}>{state}</F.button>
+        d
+    </F.div>
+))
+
+const counterFlow: Flow.For<typeof Button> = (actions: Observable<'click'>) => {
     return actions.pipe(
-        Rx.scan((acc, a) => (a === 'plus' ? acc + 1 : acc - 1), 0),
+        Rx.scan((acc, a) => (a === 'click' ? acc + 1 : acc - 1), 0),
         Rx.startWith(0)
     )
 };
 
-export const Demo = () => {
-    return (
-        <>
-            <span className="title">Chat</span>
-            <div className="demo">
-                <div className="demo-body">
-
-                </div>
-                <div className="demo-footer">
-                    <div className="textarea-wrap">
-                        <textarea placeholder="Type a message..." />
-                    </div>
-                    <AttachIcon />
-                </div>
-            </div>
-        </>
-    );
-};
+export const DemoForUser = () => UI.mount(Button, counterFlow);
