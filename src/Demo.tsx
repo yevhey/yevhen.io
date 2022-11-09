@@ -11,18 +11,30 @@ import mount = UI.mount;
 // import EmojiIcon from './images/EmojiSmile.svg';
 // import SendIcon from './images/Send.svg';
 
-const Button = UI.Node.make<number, 'click'>(({ state, notify }) => (
+const Textarea = UI.Node.make<string, 'change'>(({ state, notify }) => (
     <F.div>
-        <F.button onClick={notify('click')}>{state}</F.button>
-        d
+        <F.textarea
+            value={state}
+            onChange={() => notify('change')}
+        />
     </F.div>
-))
+));
 
-const counterFlow: Flow.For<typeof Button> = (actions: Observable<'click'>) => {
+const textareaFlow: Flow.For<typeof Textarea> = (actions: Observable<'change'>) => actions.pipe(
+    Rx.map(value => value),
+    Rx.startWith('')
+);
+
+const ChatActions = UI.Node.make<{}, 'attach'>(({ state, notify }) => (
+    <F.button onClick={notify('attach')}>
+        <AttachIcon />
+    </F.button>
+));
+
+const chatActionsFlow: Flow.For<typeof ChatActions> = (actions: Observable<'attach'>) => {
     return actions.pipe(
-        Rx.scan((acc, a) => (a === 'click' ? acc + 1 : acc - 1), 0),
-        Rx.startWith(0)
-    )
+        Rx.startWith({})
+    );
 };
 
-export const DemoForUser = () => UI.mount(Button, counterFlow);
+export const DemoForUser = () => UI.mount(Textarea, textareaFlow);
