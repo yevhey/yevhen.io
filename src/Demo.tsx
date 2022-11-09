@@ -7,22 +7,20 @@ import { F } from '@grammarly/focal';
 import './Demo.css';
 
 import AttachIcon from './images/Attach.svg';
-import mount = UI.mount;
 // import EmojiIcon from './images/EmojiSmile.svg';
 // import SendIcon from './images/Send.svg';
 
-const Textarea = UI.Node.make<string, 'change'>(({ state, notify }) => (
+const Textarea = UI.Node.make<string, string>(({ state, notify }) => (
     <F.div>
         <F.textarea
             value={state}
-            onChange={() => notify('change')}
+            onChange={e => notify(e.currentTarget.value)}
         />
     </F.div>
 ));
 
-const textareaFlow: Flow.For<typeof Textarea> = (actions: Observable<'change'>) => actions.pipe(
-    Rx.map(value => value),
-    Rx.startWith('')
+const textareaFlow: Flow.For<typeof Textarea> = (actions: Observable<string>) => actions.pipe(
+    Rx.startWith(''),
 );
 
 const ChatActions = UI.Node.make<{}, 'attach'>(({ state, notify }) => (
