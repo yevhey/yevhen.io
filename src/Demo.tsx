@@ -1,6 +1,6 @@
-import React, {FormEvent, ReactNode} from 'react';
+import React, { FormEvent, ReactNode } from 'react';
 import * as Rx from 'rxjs/operators'
-import {Observable, pipe} from 'rxjs';
+import { Observable, pipe } from 'rxjs';
 import { Flow, UI } from '@grammarly/embrace';
 import { F } from '@grammarly/focal';
 import './Demo.css';
@@ -14,15 +14,12 @@ const Textarea = UI.Node.make<string, FormEvent<HTMLTextAreaElement>>(({ state, 
         <F.textarea
             placeholder="Type a message..."
             value={state}
-            onChange={notify}
+            onChange={e => notify(e.currentTarget.value)()}
         />
     </F.div>
 ));
 
-const textareaFlow: Flow.For<typeof Textarea> = (actions: Observable<FormEvent<HTMLTextAreaElement>>) => actions.pipe(
-    Rx.startWith(''),
-    Rx.pluck('target', 'value'),
-);
+const textareaFlow: Flow.For<typeof Textarea> = Rx.startWith('');
 
 const ChatActions = UI.Node.make<{}, 'attach'>(({ state, notify }) => (
     <F.button onClick={notify('attach')}>
