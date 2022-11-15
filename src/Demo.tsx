@@ -17,18 +17,6 @@ const mainGrid = UI.Grid.make<'textarea' | 'actions'>(({ slots }) => (
   </F.div>
 ))
 
-const ChatActions = UI.Node.make<{}, 'attach'>(({ state, notify }) => (
-    <F.button onClick={notify('attach')}>
-        <AttachIcon />
-    </F.button>
-))
-
-const chatActionsFlow: Flow.For<typeof ChatActions> = (actions: Observable<'attach'>) => actions.pipe(
-  Rx.map(d => {
-    console.log(d)
-    return d
-  }))
-
 const Textarea = UI.Node.make<string, string>(({ state, notify }) => (
     <F.div className="textarea-wrap">
         <F.textarea
@@ -41,17 +29,25 @@ const Textarea = UI.Node.make<string, string>(({ state, notify }) => (
 
 const textareaFlow: Flow.For<typeof Textarea> = Rx.startWith('')
 
-export const Main = UI.Knot.make(mainGrid, { textarea: Textarea, actions: ChatActions })
+const ChatActions = UI.Node.make<{}, 'attach'>(({ state, notify }) => (
+    <F.button onClick={notify('attach')}>
+        <AttachIcon />
+    </F.button>
+))
 
-const mainFlow: Flow.For<typeof Main> = Flow.composeKnot<typeof Main>({
+const chatActionsFlow: Flow.For<typeof ChatActions> = (actions: Observable<'attach'>) => actions.pipe(
+  Rx.startWith(''),
+  Rx.map(action => {
+    console.log(action)
+    return action
+  })
+)
+
+export const Chat = UI.Knot.make(mainGrid, { textarea: Textarea, actions: ChatActions })
+
+const mainFlow: Flow.For<typeof Chat> = Flow.composeKnot<typeof Chat>({
   textarea: textareaFlow,
   actions: chatActionsFlow
 })
 
-const App: React.FC = () => UI.mount(Main, mainFlow)
-
-export const Demo: React.FC = () => (
-    <>
-        <App />
-    </>
-)
+export const Demo: React.FC = () => React.createElement(() => UI.mount(Chat, mainFlow))
