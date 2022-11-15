@@ -3,6 +3,8 @@ import * as Rx from 'rxjs/operators'
 import { F } from '@grammarly/focal'
 import { Flow, UI } from '@grammarly/embrace'
 import { Observable } from 'rxjs'
+import { pipe } from 'fp-ts/lib/function'
+
 import AttachIcon from './images/Attach.svg'
 import './Demo.css'
 
@@ -50,4 +52,12 @@ const mainFlow: Flow.For<typeof Chat> = Flow.composeKnot<typeof Chat>({
   actions: chatActionsFlow
 })
 
-export const Demo: React.FC = () => React.createElement(() => UI.mount(Chat, mainFlow))
+const InitialChat = UI.mount(Chat, mainFlow)
+// const ChatWithEmojis = UI.patch('textarea')(() => UI.Node.empty)
+
+const ChatWithExperiments = pipe(
+  InitialChat
+  // ChatWithEmojis
+)
+
+export const Demo: React.FC = () => React.createElement(() => ChatWithExperiments)
