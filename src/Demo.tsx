@@ -9,24 +9,24 @@ import AttachIcon from './images/Attach.svg'
 import './Demo.css'
 
 const mainGrid = UI.Grid.make<'textarea' | 'actions'>(({ slots }) => (
-  <F.div className="main">
+  <div className="main">
       <F.div>
         {slots.textarea}
       </F.div>
       <F.div>
         {slots.actions}
       </F.div>
-  </F.div>
+  </div>
 ))
 
 const Textarea = UI.Node.make<string, string>(({ state, notify }) => (
-    <F.div className="textarea-wrap">
+    <div className="textarea-wrap">
         <F.textarea
             placeholder="Type a message..."
             value={state}
             onChange={e => notify(e.currentTarget.value)()}
         />
-    </F.div>
+    </div>
 ))
 
 const textareaFlow: Flow.For<typeof Textarea> = Rx.startWith('')
