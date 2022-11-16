@@ -22,15 +22,15 @@ export default function Home () {
 
   return (
     <>
-       <Link to="/demo">Chat demo</Link>
-       <br />
-       <br />
+      <Link to="/demo">Chat demo</Link>
+      <br />
+      <br />
       Search the pokemon: <input {...searchInput} />
       <br />
       <br />
       {!isLoading && values.map(({ name }) => (
         <div key={name}>
-          <Link to={`p/${name}`}>
+          <Link to={name}>
             {name}
           </Link>
         </div>

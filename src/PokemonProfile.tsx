@@ -6,13 +6,15 @@ interface Props {
 }
 
 function PokemonProfile ({ match: { params: { name } } }: Props): ReactElement {
-  const [pokemon, setPokemon] = useState([])
+  const [pokemon, setPokemon] = useState<string[]>([])
 
   useEffect(function fetchPokemon () {
     void fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
-      .then(results => results.json())
-      .then(({ sprites }) => {
-        setPokemon(Object.values(sprites).filter(image => typeof image === 'string').reverse())
+      .then(async results => await results.json())
+      .then(({ sprites }: { sprites: { back_default: string } }) => {
+        const pokemonAvatars = Object.values(sprites).filter(image => typeof image === 'string').reverse()
+
+        setPokemon(pokemonAvatars)
       })
   }, [])
 
