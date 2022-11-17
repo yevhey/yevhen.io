@@ -2,8 +2,7 @@ import * as React from 'react'
 import * as Rx from 'rxjs/operators'
 import { F } from '@grammarly/focal'
 import { Flow, UI } from '@grammarly/embrace'
-import { Observable } from 'rxjs'
-import { pipe } from 'fp-ts/lib/function'
+import { flow } from 'fp-ts/lib/function'
 
 import AttachIcon from './images/Attach.svg'
 import './Demo.css'
@@ -29,35 +28,31 @@ const Textarea = UI.Node.make<string, string>(({ state, notify }) => (
     </div>
 ))
 
-const textareaFlow: Flow.For<typeof Textarea> = Rx.startWith('')
+export const textareaFlow: Flow.For<typeof Textarea> = Rx.startWith('')
 
-const ChatActions = UI.Node.make<{}, 'attach'>(({ state, notify }) => (
-    <F.button onClick={notify('attach')}>
-        <AttachIcon />
-    </F.button>
+const ChatActions = UI.Node.make<{ readonly status: string }, 'onAttach'>(({ state, notify }) => (
+    <>
+        <F.div>{state.pipe(Rx.map(({ status }) => status))}</F.div>
+        <F.button onClick={notify('onAttach')}>
+            <AttachIcon />
+        </F.button>
+    </>
 ))
 
-const chatActionsFlow: Flow.For<typeof ChatActions> = (actions: Observable<'attach'>) => actions.pipe(
-  Rx.startWith(''),
-  Rx.map(action => {
-    console.log(action)
-    return action
-  })
+export const chatActionsFlow: Flow.For<typeof ChatActions> = flow(
+  Rx.map(() => ({
+    status: 'File is attached'
+  })),
+  Rx.startWith({ status: '' })
 )
 
 export const Chat = UI.Knot.make(mainGrid, { textarea: Textarea, actions: ChatActions })
 
-const mainFlow: Flow.For<typeof Chat> = Flow.composeKnot<typeof Chat>({
+const chatFlow: Flow.For<typeof Chat> = Flow.composeKnot<typeof Chat>({
   textarea: textareaFlow,
   actions: chatActionsFlow
 })
 
-const InitialChat = UI.mount(Chat, mainFlow)
-// const ChatWithEmojis = UI.patch('textarea')(() => UI.Node.empty)
+const InitialChat = UI.mount(Chat, chatFlow)
 
-const ChatWithExperiments = pipe(
-  InitialChat
-  // ChatWithEmojis
-)
-
-export const Demo: React.FC = () => React.createElement(() => ChatWithExperiments)
+export const Demo: React.FC = () => React.createElement(() => InitialChat)
