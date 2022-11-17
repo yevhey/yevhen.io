@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { Link } from 'react-router-dom';
 import * as Rx from 'rxjs/operators'
 import { F } from '@grammarly/focal'
 import { Flow, UI } from '@grammarly/embrace'
@@ -8,14 +9,21 @@ import AttachIcon from './images/Attach.svg'
 import './Demo.css'
 
 const mainGrid = UI.Grid.make<'textarea' | 'actions'>(({ slots }) => (
-  <div className="main">
-      <F.div>
-        {slots.textarea}
-      </F.div>
-      <F.div>
-        {slots.actions}
-      </F.div>
-  </div>
+    <>
+        <Link to="/">&lt; Back</Link>
+        <div className="title">Chat</div>
+        <div className="demo">
+            <div className="demo-body" />
+            <F.div className="demo-footer">
+                <F.Fragment>
+                    {slots.textarea}
+                </F.Fragment>
+                <F.Fragment>
+                    {slots.actions}
+                </F.Fragment>
+            </F.div>
+        </div>
+    </>
 ))
 
 const Textarea = UI.Node.make<string, string>(({ state, notify }) => (
@@ -32,10 +40,8 @@ export const textareaFlow: Flow.For<typeof Textarea> = Rx.startWith('')
 
 const ChatActions = UI.Node.make<{ readonly status: string }, 'onAttach'>(({ state, notify }) => (
     <>
-        <F.div>{state.pipe(Rx.map(({ status }) => status))}</F.div>
-        <F.button onClick={notify('onAttach')}>
-            <AttachIcon />
-        </F.button>
+        <F.div className="actions-info">{state.pipe(Rx.map(({ status }) => status))}</F.div>
+        <AttachIcon className="actions-button" onClick={notify('onAttach')} />
     </>
 ))
 
