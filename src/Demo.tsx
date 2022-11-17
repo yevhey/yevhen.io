@@ -9,8 +9,7 @@ import AttachIcon from './images/Attach.svg'
 import './Demo.css'
 
 const mainGrid = UI.Grid.make<'textarea' | 'actions'>(({ slots }) => (
-    <>
-        <Link to="/">&lt; Back</Link>
+    <div className="demo-wrap">
         <div className="title">Chat</div>
         <div className="demo">
             <div className="demo-body" />
@@ -23,7 +22,7 @@ const mainGrid = UI.Grid.make<'textarea' | 'actions'>(({ slots }) => (
                 </F.Fragment>
             </F.div>
         </div>
-    </>
+    </div>
 ))
 
 const Textarea = UI.Node.make<string, string>(({ state, notify }) => (
@@ -41,7 +40,9 @@ export const textareaFlow: Flow.For<typeof Textarea> = Rx.startWith('')
 const ChatActions = UI.Node.make<{ readonly status: string }, 'onAttach'>(({ state, notify }) => (
     <>
         <F.div className="actions-info">{state.pipe(Rx.map(({ status }) => status))}</F.div>
-        <AttachIcon className="actions-button" onClick={notify('onAttach')} />
+        <div className="actions-wrap">
+            <AttachIcon className="actions-button" onClick={notify('onAttach')} />
+        </div>
     </>
 ))
 

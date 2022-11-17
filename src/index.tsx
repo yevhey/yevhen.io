@@ -22,8 +22,8 @@ const App: React.FC = () => (
     <Switch>
       <Route path="/demo" component={Demo} />
       <Route path="/patched-demo" component={PatchedDemo} />
-      <Route path="/:name" component={PokemonProfile} />
-      <Route component={Home} />
+       <Route path="/:name" component={PokemonProfile} />
+       <Route component={Home} />
     </Switch>
   </Router>
 )

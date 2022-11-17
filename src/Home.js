@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
+import { Demo } from './Demo'
+import { PatchedDemo } from './PatchedDemo'
 // import ApplePayButton from './ApplePayButton';
 
 export default function Home () {
   const searchInput = useSearchInput('')
-  const [values, setValues] = useState([])
-  const [isLoading, setLoading] = useState(true)
+  const [, setValues] = useState([])
+  const [, setLoading] = useState(true)
   const dataRef = useRef([])
 
   useEffect(function firstRender () {
@@ -22,24 +24,20 @@ export default function Home () {
 
   return (
     <>
-      <div>
-        <Link to="/demo">Chat demo</Link>
-      </div>
-      <div>
-        <Link to="/patched-demo">Patched demo</Link>
-      </div>
-      <br />
-      <br />
-      Search the pokemon: <input {...searchInput} />
-      <br />
-      <br />
-      {!isLoading && values.map(({ name }) => (
-        <div key={name}>
-          <Link to={name}>
-            {name}
-          </Link>
-        </div>
-      ))}
+      <Demo />
+      <PatchedDemo />
+      {/* <br /> */}
+      {/* <br /> */}
+      {/* Search the pokemon: <input {...searchInput} /> */}
+      {/* <br /> */}
+      {/* <br /> */}
+      {/* {!isLoading && values.map(({ name }) => ( */}
+      {/*  <div key={name}> */}
+      {/*    <Link to={name}> */}
+      {/*      {name} */}
+      {/*    </Link> */}
+      {/*  </div> */}
+      {/* ))} */}
     </>
   )
 };
@@ -49,7 +47,7 @@ function useSearchInput (initialValue) {
   const [value, setSearchValue] = useState(initialValue)
 
   useEffect(function firstRender () {
-    inputRef.current.focus()
+    // inputRef.current.focus()
   }, [inputRef])
 
   function handleChange ({ target: { value } }) {

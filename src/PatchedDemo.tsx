@@ -1,23 +1,19 @@
 import * as React from 'react'
 import * as Rx from 'rxjs/operators'
-import { F } from '@grammarly/focal'
 import { Flow, UI } from '@grammarly/embrace'
 import { flow, pipe } from 'fp-ts/lib/function'
 
 import AttachIcon from './images/Attach.svg'
+import EmojiIcon from './images/Emoji.svg'
 import './Demo.css'
 
 import { Chat, textareaFlow } from './Demo'
 
 const ChatActionsWithEmojis = UI.Node.make<{}, 'attach' | 'emoji'>(({ state, notify }) => (
-    <>
-        <F.button onClick={notify('attach')}>
-            <AttachIcon />
-        </F.button>
-        <F.button onClick={notify('emoji')}>
-            <AttachIcon />
-        </F.button>
-    </>
+    <div className="actions-wrap">
+        <AttachIcon className="actions-button" onClick={notify('attach')} />
+        <EmojiIcon className="actions-button" onClick={notify('emoji')} />
+    </div>
 ))
 
 const chatActionsFlowWithEmojis: Flow.For<typeof ChatActionsWithEmojis> = flow(
