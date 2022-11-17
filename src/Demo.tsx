@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom';
 import * as Rx from 'rxjs/operators'
 import { F } from '@grammarly/focal'
 import { Flow, UI } from '@grammarly/embrace'
@@ -8,9 +7,11 @@ import { flow } from 'fp-ts/lib/function'
 import AttachIcon from './images/Attach.svg'
 import './Demo.css'
 
-const mainGrid = UI.Grid.make<'textarea' | 'actions'>(({ slots }) => (
+const mainGrid = UI.Grid.make<'title' | 'textarea' | 'actions'>(({ slots }) => (
     <div className="demo-wrap">
-        <div className="title">Chat</div>
+        <F.Fragment>
+            {slots.title}
+        </F.Fragment>
         <div className="demo">
             <div className="demo-body" />
             <F.div className="demo-footer">
@@ -24,6 +25,10 @@ const mainGrid = UI.Grid.make<'textarea' | 'actions'>(({ slots }) => (
         </div>
     </div>
 ))
+
+const Title = UI.Node.make<string>(() => <div className="title">Chat</div>)
+
+export const titleFlow: Flow.For<typeof Title> = Rx.startWith('')
 
 const Textarea = UI.Node.make<string, string>(({ state, notify }) => (
     <div className="textarea-wrap">
@@ -53,9 +58,10 @@ export const chatActionsFlow: Flow.For<typeof ChatActions> = flow(
   Rx.startWith({ status: '' })
 )
 
-export const Chat = UI.Knot.make(mainGrid, { textarea: Textarea, actions: ChatActions })
+export const Chat = UI.Knot.make(mainGrid, { title: Title, textarea: Textarea, actions: ChatActions })
 
 const chatFlow: Flow.For<typeof Chat> = Flow.composeKnot<typeof Chat>({
+  title: titleFlow,
   textarea: textareaFlow,
   actions: chatActionsFlow
 })

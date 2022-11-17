@@ -7,7 +7,9 @@ import AttachIcon from './images/Attach.svg'
 import EmojiIcon from './images/Emoji.svg'
 import './Demo.css'
 
-import { Chat, textareaFlow } from './Demo'
+import { Chat, textareaFlow, titleFlow } from './Demo'
+
+const NewTitle = UI.Node.make(() => <div className="title">Patched Chat</div>)
 
 const ChatActionsWithEmojis = UI.Node.make<{}, 'attach' | 'emoji'>(({ state, notify }) => (
     <div className="actions-wrap">
@@ -30,10 +32,12 @@ const chatActionsFlowWithEmojis: Flow.For<typeof ChatActionsWithEmojis> = flow(
 
 const PatchedChat = pipe(
   Chat,
+  UI.patch('title')(() => NewTitle),
   UI.patch('actions')(() => ChatActionsWithEmojis)
 )
 
 const newMainFlow: Flow.For<typeof PatchedChat> = Flow.composeKnot<typeof PatchedChat>({
+  title: titleFlow,
   textarea: textareaFlow,
   actions: chatActionsFlowWithEmojis
 })
