@@ -4,17 +4,17 @@
 
 html, body {
     height: 100%;
-    margin: 16px 24px;
+    /*margin: 16px 24px;*/
 }
 
 #root {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    /*gap: 40px;*/
     padding: 20px;
     height: 100%;
-    font-family: Arial, sans-serif;
-    font-size: 16px;
+    /*font-family: Arial, sans-serif;*/
+    /*font-size: 16px;*/
 }
 
 .demo-wrap {

@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react'
-// import { Link } from 'react-router-dom'
-import { Demo } from './Demo'
-import { PatchedDemo } from './PatchedDemo'
+import { Link } from 'react-router-dom'
+// import { Demo } from './Demo'
+// import { PatchedDemo } from './PatchedDemo'
 // import ApplePayButton from './ApplePayButton';
 
 export default function Home () {
   const searchInput = useSearchInput('')
-  const [, setValues] = useState([])
-  const [, setLoading] = useState(true)
+  const [values, setValues] = useState([])
+  const [isLoading, setLoading] = useState(true)
   const dataRef = useRef([])
 
   useEffect(function firstRender () {
@@ -24,20 +24,18 @@ export default function Home () {
 
   return (
     <>
-      <Demo />
-      <PatchedDemo />
-      {/* <br /> */}
-      {/* <br /> */}
-      {/* Search the pokemon: <input {...searchInput} /> */}
-      {/* <br /> */}
-      {/* <br /> */}
-      {/* {!isLoading && values.map(({ name }) => ( */}
-      {/*  <div key={name}> */}
-      {/*    <Link to={name}> */}
-      {/*      {name} */}
-      {/*    </Link> */}
-      {/*  </div> */}
-      {/* ))} */}
+      {/* <Demo /> */}
+      {/* <PatchedDemo /> */}
+      Search the pokemon: <input {...searchInput} />
+      <br />
+      <br />
+      {!isLoading && values.map(({ name }) => (
+        <div key={name}>
+          <Link to={name}>
+            {name}
+          </Link>
+        </div>
+      ))}
     </>
   )
 };
@@ -47,7 +45,7 @@ function useSearchInput (initialValue) {
   const [value, setSearchValue] = useState(initialValue)
 
   useEffect(function firstRender () {
-    // inputRef.current.focus()
+    inputRef.current.focus()
   }, [inputRef])
 
   function handleChange ({ target: { value } }) {
@@ -61,10 +59,10 @@ function useSearchInput (initialValue) {
   }
 }
 
-function fetchData () {
-  return fetch('https://pokeapi.co/api/v2/pokemon?limit=1000', {
+async function fetchData () {
+  const results = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000', {
     cache: 'no-cache'
   })
-    .then(results => results.json())
-    .then(({ results }) => results)
+  const { results: data } = await results.json()
+  return data
 }
