@@ -23,7 +23,7 @@ export default function Home () {
   }, [searchInput.value])
 
   return (
-    <>
+    <div>
       {/* <Demo /> */}
       {/* <PatchedDemo /> */}
       Search the pokemon: <input {...searchInput} />
@@ -36,7 +36,7 @@ export default function Home () {
           </Link>
         </div>
       ))}
-    </>
+    </div>
   )
 };
 
