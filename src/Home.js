@@ -20,7 +20,7 @@ export default function Home () {
 
   useEffect(function searchPokemon () {
     setValues(dataRef.current.filter(({ name }) => name.includes(searchInput.value.toLowerCase())))
-  }, [searchInput.value])
+  }, [searchInput.value, setValues])
 
   return (
     <div>
