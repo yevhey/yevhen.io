@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 // import ApplePayButton from './ApplePayButton';
 
 export default function Home () {
-  const searchInput = useSearchInput('')
   const [values, setValues] = useState([])
   const [isLoading, setLoading] = useState(true)
   const dataRef = useRef([])
@@ -26,7 +25,6 @@ export default function Home () {
     <div>
       {/* <Demo /> */}
       {/* <PatchedDemo /> */}
-      Search the pokemon: <input {...searchInput} />
       <br />
       <br />
       {!isLoading && values.map(({ name }) => (
@@ -40,7 +38,7 @@ export default function Home () {
   )
 };
 
-function useSearchInput (initialValue) {
+export function useSearchInput (initialValue) {
   const inputRef = useRef()
   const [value, setSearchValue] = useState(initialValue)
 
