@@ -23,10 +23,6 @@ export default function Home () {
 
   return (
     <div>
-      {/* <Demo /> */}
-      {/* <PatchedDemo /> */}
-      <br />
-      <br />
       {!isLoading && values.map(({ name }) => (
         <div key={name}>
           <Link to={name}>
