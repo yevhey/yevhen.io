@@ -35,12 +35,12 @@ export default function Home () {
 };
 
 export function useSearchInput (initialValue) {
-  const inputRef = useRef()
+  const inputRef = useRef < HTMLInputElement > null
   const [value, setSearchValue] = useState(initialValue)
 
   useEffect(function firstRender () {
     inputRef.current.focus()
-  }, [inputRef])
+  }, [inputRef.current])
 
   function handleChange ({ target: { value } }) {
     setSearchValue(value)
