@@ -39,7 +39,7 @@ export const useSearchInput = (initialValue: string) => {
   const [value, setSearchValue] = useState(initialValue)
 
   useEffect(function firstRender () {
-    inputRef.current.focus()
+    inputRef.current?.focus()
   }, [inputRef.current])
 
   const handleChange = ({ target: { value } }) => {
