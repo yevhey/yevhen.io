@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 // import { PatchedDemo } from './PatchedDemo'
 // import ApplePayButton from './ApplePayButton';
 
-export default function Home () {
+const Home = () => {
   const [values, setValues] = useState([])
   const [isLoading, setLoading] = useState(true)
   const dataRef = useRef([])
@@ -15,6 +15,7 @@ export default function Home () {
       setLoading(false)
       dataRef.current = data
     })
+      .catch(() => {})
   }, [])
 
   useEffect(function searchPokemon () {
@@ -32,7 +33,7 @@ export default function Home () {
       ))}
     </div>
   )
-};
+}
 
 export const useSearchInput = (initialValue: string) => {
   const inputRef = useRef<HTMLInputElement>(null)
@@ -60,3 +61,5 @@ async function fetchData () {
   const { results: data } = await results.json()
   return data
 }
+
+export default Home
