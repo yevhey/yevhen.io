@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, ReactElement } from 'react'
 import { Link } from 'react-router-dom'
 // import { Demo } from './Demo'
 // import { PatchedDemo } from './PatchedDemo'
 // import ApplePayButton from './ApplePayButton';
 
-const Home = () => {
+const Home = (): ReactElement => {
   const [values, setValues] = useState([])
   const [isLoading, setLoading] = useState(true)
   const dataRef = useRef([])
@@ -19,7 +19,7 @@ const Home = () => {
   }, [])
 
   useEffect(function searchPokemon () {
-    setValues(dataRef.current.filter(({ name }) => name.includes(searchInput.value.toLowerCase())))
+    setValues(dataRef.current.filter(({ name }: { name: string }) => name.includes(searchInput.value.toLowerCase())))
   }, [setValues, dataRef.current])
 
   return (
