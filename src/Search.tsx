@@ -1,5 +1,6 @@
 import React, { forwardRef, useRef } from 'react'
 import { useSearchInput } from './Home'
+import {SearchInput} from "./SearchInput";
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 export const Search = () => {
@@ -8,7 +9,8 @@ export const Search = () => {
 
   return (
     <>
-      Search the pokemon: {forwardRef((_, ref) => <input ref={ref} value={value} onChange={onChange} />, ref)}
+      Search the pokemon:
+      <SearchInput ref={ref} value={value} onChange={onChange} />
     </>
   )
 }
