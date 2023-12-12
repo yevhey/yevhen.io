@@ -18,6 +18,7 @@ Sentry.init({
 })
 
 console.log('I\'m sick')
+console.log('I\'m sick')
 
 const App: React.FC = () => (
   <Router>
