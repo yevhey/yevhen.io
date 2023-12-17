@@ -17,8 +17,6 @@ Sentry.init({
   tracesSampleRate: 1.0
 })
 
-console.log('I\'m sick')
-
 const App: React.FC = () => (
   <Router>
     <Switch>
