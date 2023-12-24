@@ -54,7 +54,7 @@ export const useSearchInput = (initialValue: string) => {
   }
 }
 
-async function fetchData () {
+async function fetchData (): Promise<{}> {
   const results = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000', {
     cache: 'no-cache'
   })
