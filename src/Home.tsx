@@ -35,7 +35,7 @@ const Home = (): ReactElement => {
   )
 }
 
-export const useSearchInput = (initialValue: string) => {
+export const useSearchInput: {} = (initialValue: string) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [value, setSearchValue] = useState(initialValue)
 
@@ -43,7 +43,7 @@ export const useSearchInput = (initialValue: string) => {
     inputRef.current?.focus()
   }, [inputRef.current])
 
-  const handleChange = ({ target: { value } }) => {
+  const handleChange: {} = ({ target: { value } }) => {
     setSearchValue(value)
   }
 
