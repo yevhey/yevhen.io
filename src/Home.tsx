@@ -22,15 +22,19 @@ const Home = (): ReactElement => {
   }, [value, setValues, dataRef.current])
 
   return (
-    <div>
-      <Search value={value} onChange={onChange} />
-      {!isLoading && values.map(({ name }) => (
-        <div key={name}>
-          <Link to={name}>
-            {name}
-          </Link>
-        </div>
-      ))}
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+      <div>
+        <Search value={value} onChange={onChange} />
+      </div>
+      <div>
+        {!isLoading && values.map(({ name }) => (
+          <div key={name}>
+            <Link to={name}>
+              {name}
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

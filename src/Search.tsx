@@ -10,7 +10,7 @@ export const Search: ({ value, onChange }: { value: string, onChange: ({ target:
 
   return (
     <>
-      Search the pokemon:
+      Search the pokemon:&nbsp;
       <SearchInput ref={ref} value={value} onChange={onChange} />
     </>
   )
