@@ -1,29 +1,28 @@
-import React, { useState, useEffect, useRef, ReactElement } from 'react'
+import React, {useState, useEffect, useRef, ReactElement, RefObject} from 'react'
 import { Link } from 'react-router-dom'
-// import { Demo } from './Demo'
-// import { PatchedDemo } from './PatchedDemo'
-// import ApplePayButton from './ApplePayButton';
+import { Search } from './Search';
 
 const Home = (): ReactElement => {
-  const [values, setValues] = useState([])
+  const [values, setValues] = useState<Array<{ name: string }>>([])
   const [isLoading, setLoading] = useState(true)
   const dataRef = useRef([])
+  const { value } = useSearchInput('')
 
   useEffect(function firstRender () {
-    fetchData().then(data => {
+    fetchData().then((data: Array<{ name: string }>) => {
       setValues(data)
       setLoading(false)
-      dataRef.current = data
     })
       .catch(() => {})
   }, [])
 
   useEffect(function searchPokemon () {
-    setValues(dataRef.current.filter(({ name }: { name: string }) => name.includes(searchInput.value.toLowerCase())))
+    setValues(dataRef.current.filter(({ name }: { name: string }) => name.includes(value.toLowerCase())))
   }, [setValues, dataRef.current])
 
   return (
     <div>
+      <Search />
       {!isLoading && values.map(({ name }) => (
         <div key={name}>
           <Link to={name}>
@@ -35,7 +34,13 @@ const Home = (): ReactElement => {
   )
 }
 
-export const useSearchInput: {} = (initialValue: string) => {
+type searchInputType = (initialValue: string) => {
+  readonly ref: RefObject<HTMLInputElement>
+  readonly value: string
+  readonly onChange: ({ target: { value } }: { target: { value: string } }) => void
+}
+
+export const useSearchInput: searchInputType = (initialValue: string) => {
   const inputRef = useRef<HTMLInputElement>(null)
   const [value, setSearchValue] = useState(initialValue)
 
@@ -43,7 +48,7 @@ export const useSearchInput: {} = (initialValue: string) => {
     inputRef.current?.focus()
   }, [inputRef.current])
 
-  const handleChange: {} = ({ target: { value } }) => {
+  const handleChange: ({ target: { value } }: { target: { value: string } }) => void = ({ target: { value } }) => {
     setSearchValue(value)
   }
 
@@ -51,7 +56,7 @@ export const useSearchInput: {} = (initialValue: string) => {
     ref: inputRef,
     value,
     onChange: handleChange
-  }
+  } as const
 }
 
 async function fetchData (): Promise<{}> {
