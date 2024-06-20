@@ -1,10 +1,12 @@
-import React, { useRef } from 'react'
-import { useSearchInput } from './Home'
+import React, { useEffect, useRef } from 'react'
 import { SearchInput } from './SearchInput'
 
-export const Search: () => JSX.Element = () => {
+export const Search: ({ value, onChange }: { value: string, onChange: ({ target: { value } }: { target: { value: string } }) => void }) => JSX.Element = ({ value, onChange }: { value: string, onChange: ({ target: { value } }: { target: { value: string } }) => void }) => {
   const ref = useRef<HTMLInputElement>(null)
-  const { value, onChange } = useSearchInput('')
+
+  useEffect(function firstRender () {
+    ref.current?.focus()
+  }, [ref.current])
 
   return (
     <>

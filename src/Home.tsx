@@ -5,24 +5,25 @@ import { Search } from './Search';
 const Home = (): ReactElement => {
   const [values, setValues] = useState<Array<{ name: string }>>([])
   const [isLoading, setLoading] = useState(true)
-  const dataRef = useRef([])
-  const { value } = useSearchInput('')
+  const dataRef = useRef<Array<{ name: string }>>([])
+  const { value, onChange } = useSearchInput('')
 
   useEffect(function firstRender () {
     fetchData().then((data: Array<{ name: string }>) => {
       setValues(data)
       setLoading(false)
+      dataRef.current = data
     })
       .catch(() => {})
   }, [])
 
   useEffect(function searchPokemon () {
     setValues(dataRef.current.filter(({ name }: { name: string }) => name.includes(value.toLowerCase())))
-  }, [setValues, dataRef.current])
+  }, [value, setValues, dataRef.current])
 
   return (
     <div>
-      <Search />
+      <Search value={value} onChange={onChange} />
       {!isLoading && values.map(({ name }) => (
         <div key={name}>
           <Link to={name}>
@@ -35,25 +36,18 @@ const Home = (): ReactElement => {
 }
 
 type searchInputType = (initialValue: string) => {
-  readonly ref: RefObject<HTMLInputElement>
   readonly value: string
   readonly onChange: ({ target: { value } }: { target: { value: string } }) => void
 }
 
 export const useSearchInput: searchInputType = (initialValue: string) => {
-  const inputRef = useRef<HTMLInputElement>(null)
   const [value, setSearchValue] = useState(initialValue)
-
-  useEffect(function firstRender () {
-    inputRef.current?.focus()
-  }, [inputRef.current])
 
   const handleChange: ({ target: { value } }: { target: { value: string } }) => void = ({ target: { value } }) => {
     setSearchValue(value)
   }
 
   return {
-    ref: inputRef,
     value,
     onChange: handleChange
   } as const
