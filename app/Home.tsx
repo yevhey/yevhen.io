@@ -1,13 +1,17 @@
-'use client'
-import React, { useState, useEffect, useRef, ReactElement } from 'react'
-import { doc } from '../services/google-spreadsheet';
+import React, { useState, useEffect, useRef } from 'react'
+import logInput from './log-input'
 import { Search } from './Search';
 
-const Home = (): ReactElement => {
+export default function Home() {
   const [values, setValues] = useState<Array<{ name: string }>>([])
   const [isLoading, setLoading] = useState(true)
   const dataRef = useRef<Array<{ name: string }>>([])
   const { value, onChange } = useSearchInput('')
+
+  const handleChange = ({ target: { value } }: { target: { value: string } }) => {
+    onChange(value)
+    logInput(value)
+  }
 
   useEffect(function firstRender () {
     fetchData().then((data: Array<{ name: string }>) => {
@@ -21,19 +25,6 @@ const Home = (): ReactElement => {
   useEffect(function searchPokemon () {
     setValues(dataRef.current.filter(({ name }: { name: string }) => name.includes(value.toLowerCase())))
   }, [value, setValues, dataRef.current])
-
-  const handleChange = async () => {
-      try {
-          await doc.loadInfo();
-          const sheet = doc.sheetsByIndex[0];
-          const rows = await sheet.getRows();
-
-          rows[1].set('date', Date.now());
-          await rows[1].save();
-        } catch (error) {
-          console.error(error);
-        }
-  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', margin: 24, gap: 16 }}>
@@ -55,13 +46,13 @@ const Home = (): ReactElement => {
 
 type searchInputType = (initialValue: string) => {
   readonly value: string
-  readonly onChange: ({ target: { value } }: { target: { value: string } }) => void
+  readonly onChange: (value: string) => void
 }
 
 export const useSearchInput: searchInputType = (initialValue: string) => {
   const [value, setSearchValue] = useState(initialValue)
 
-  const handleChange: ({ target: { value } }: { target: { value: string } }) => void = ({ target: { value } }) => {
+  const handleChange: (value: string) => void = (value) => {
     setSearchValue(value)
   }
 
@@ -78,5 +69,3 @@ async function fetchData (): Promise<{}> {
   const { results: data } = await results.json()
   return data
 }
-
-export default Home
