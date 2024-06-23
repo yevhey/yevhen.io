@@ -9,4 +9,4 @@ const jwt = new JWT({
   scopes: ['https://www.googleapis.com/auth/spreadsheets'],
 });
 
-export const doc = new GoogleSpreadsheet(process.env.sheet_id, jwt);
+export const doc = new GoogleSpreadsheet(process.env.sheet_id || '', jwt);
