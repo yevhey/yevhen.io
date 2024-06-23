@@ -1,8 +1,6 @@
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 import { JWT } from 'google-auth-library';
 
-// import creds from '../creds.json'
-
 const jwt = new JWT({
   email: process.env.client_email,
   key: process.env.private_key,
