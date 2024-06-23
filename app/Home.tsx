@@ -4,6 +4,7 @@ import logInput from './log-input'
 import { Search } from './Search';
 
 export default function Home() {
+  const didLogRef = useRef(false);
   const [values, setValues] = useState<Array<{ name: string }>>([])
   const [isLoading, setLoading] = useState(true)
   const dataRef = useRef<Array<{ name: string }>>([])
@@ -11,10 +12,16 @@ export default function Home() {
 
   const handleChange = ({ target: { value } }: { target: { value: string } }) => {
     onChange(value)
-    logInput(value)
+    logInput(`searched ${value}`)
   }
 
   useEffect(function firstRender () {
+    if (!didLogRef.current) {
+      didLogRef.current = true;
+
+      logInput('opened /')
+    }
+
     fetchData().then((data: Array<{ name: string }>) => {
       setValues(data)
       setLoading(false)
