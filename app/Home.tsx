@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import Link from 'next/link'
 import logInput from './log-input'
 import { Search } from './Search';
 
@@ -27,16 +28,16 @@ export default function Home() {
   }, [value, setValues, dataRef.current])
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', margin: 24, gap: 16 }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
       <div>
         <Search value={value} onChange={handleChange} />
       </div>
       <div>
         {!isLoading && values.map(({ name }) => (
           <div key={name}>
-            {/*<Link to={name}>*/}
+            <Link href={name}>
               {name}
-            {/*</Link>*/}
+            </Link>
           </div>
         ))}
       </div>
